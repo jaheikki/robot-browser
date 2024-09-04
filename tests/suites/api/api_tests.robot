@@ -1,7 +1,7 @@
 *** Settings ***
 Library    RequestsLibrary
 Library    Collections
-Library    RestfulBookerLibrary.py
+Library    ../../../libraries/RestfulBookerLibrary.py
 
 *** Variables ***
 ${BASE_URL}    https://restful-booker.herokuapp.com 

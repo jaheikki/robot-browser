@@ -10,3 +10,6 @@ Robot demo project with Robot Framework and Browser library.
 
 ## Run Tests
 - robot tests/suites/smoke/order_from_webshop.robot
+
+## Additional stuff
+- Example API tests, run: robot tests/suites/api/api_tests.robot
