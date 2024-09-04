@@ -3,3 +3,5 @@
 *.html
 output.xml
 playwright-log.txt
+
+__pycache__
