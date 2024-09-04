@@ -1,5 +1,5 @@
 # robot-browser
-Robot demo project with Robot Framework and Browser library.
+Robot demo project with Robot Framework and Browser library against https://www.saucedemo.com/.
 
 ## Install
 - install Python [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
