@@ -12,4 +12,13 @@ Robot demo project with Robot Framework and Browser library against https://www.
 - robot tests/suites/smoke/order_from_webshop.robot
 
 ## Additional stuff
-- Example API tests, run: robot tests/suites/api/api_tests.robot
+
+### Example API tests
+-  pip install robotframework-requests
+-  robot tests/suites/api/api_tests.robot
+
+### Example database tests (Postgres)
+- pip install robotframework-databaselibrary
+- pip install psycopg2-binary
+- robot tests/suites/smoke/database_test_large.robot
+
