@@ -5,8 +5,10 @@ Robot demo project with Robot Framework and Browser library against https://www.
 - install Python [virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
 - install [Pip](https://pip.pypa.io/en/stable/installation/)
 - pip install robotframework
+
+For installing robotframework-browser lib see [installation guide](https://robotframework-browser.org/#installation)
 - pip install robotframework-browser
-- rfbrowser init (see [installation guide](https://robotframework-browser.org/#installation))
+- rfbrowser init
 
 ## Run Tests
 - robot tests/suites/smoke/order_from_webshop.robot
