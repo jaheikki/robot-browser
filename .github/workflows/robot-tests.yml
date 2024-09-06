@@ -31,7 +31,7 @@ jobs:
 
       # Upload Robot Framework test results
       - name: Upload Robot Framework results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: robot-results
           path: results/
