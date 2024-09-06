@@ -11,10 +11,11 @@ RUN apt-get update && apt-get install -y \
 # Install Robot Framework and Browser library
 RUN pip install --no-cache-dir robotframework robotframework-browser
 
-# Initialize the Browser library
-RUN rfbrowser init
 
 RUN npx playwright install-deps
+
+# Initialize the Browser library
+RUN rfbrowser init
 
 # Copy your requirements.txt (if you need additional Python libraries)
 COPY requirements.txt /opt/robotframework/requirements.txt
