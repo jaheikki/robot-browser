@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Tests which work with the same input params across all databases.
 
-Resource            ../../resources/common.resource
+Resource            ../../../resources/common.resource
 
 Suite Setup         Connect To Database    psycopg2    ${DBNAME}    ${DBUSER}    ${DBPASSWORD}    ${DBHOST}    ${DBPORT}
 Suite Teardown      Disconnect From Database
@@ -10,9 +10,13 @@ Test Teardown       Drop Tables Person And Foobar
 
 *** Variables ***
 ${DBNAME}        postgres
+${DBNAME}        postgres
 ${DBUSER}        postgres
+#in project this is secret that must come from ENV variable:
 ${DBPASSWORD}    mysecretpassword
 ${DBHOST}        localhost
+#for running test in Docker container and the Postgres DB is running in host machine:
+# ${DBHOST}        host.docker.internal 
 ${DBPORT}        5432
 
 *** Test Cases ***

@@ -1,0 +1,5 @@
+robotframework
+robotframework-requests
+robotframework-browser 
+robotframework-databaselibrary 
+psycopg2-binary

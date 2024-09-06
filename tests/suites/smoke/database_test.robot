@@ -4,8 +4,11 @@ Library    DatabaseLibrary
 *** Variables ***
 ${DBNAME}        postgres
 ${DBUSER}        postgres
-${DBPASSWORD}    mysecretpassword
+#in project this is secret that must come from ENV variable:
+${DBPASSWORD}    mysecretpassword 
 ${DBHOST}        localhost
+#for running test in Docker container and the Postgres DB is running in host machine:
+# ${DBHOST}        host.docker.internal 
 ${DBPORT}        5432
 
 *** Test Cases ***

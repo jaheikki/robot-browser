@@ -8,8 +8,8 @@ ${BASE_URL}    https://www.saucedemo.com/
 
 *** Test Cases ***
 Make Multi Product Order From Webshop
-    [Documentation]    This test makes a single order from the webshop, verifying each step.
-    New Browser    chromium    headless=No    slowMo=0.1
+    [Documentation]    This test makes a multi product order from the webshop, verifying each step.
+    # New Browser    chromium    headless=No    slowMo=0.1 #for local run with headed browser
     New Page       ${BASE_URL}
     Log In To Shop    ${BASE_URL}
     ${products_details}=    Add Products To Cart   ${PRODUCTS}
