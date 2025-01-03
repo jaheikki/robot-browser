@@ -1,31 +1,43 @@
 pipeline {
-  agent { label 'vagrant-node' }
+  agent none
   stages {
     stage('Back-end') {
-      agent {
-        docker { image 'maven:3.8.1-adoptopenjdk-11' }
-      }
       steps {
-        sh 'mvn --version'
+        node('vagrant-node') {
+          docker.image('maven:3.8.1-adoptopenjdk-11').inside {
+            sh 'mvn --version'
+          }
+        }
       }
     }
     stage('Front-end') {
-      agent {
-        docker { image 'node:16-alpine' }
-      }
       steps {
-        sh 'node --version'
+        node('vagrant-node') {
+          docker.image('node:16-alpine').inside {
+            sh 'node --version'
+          }
+        }
       }
     }
     stage('My dockerfile') {
-      agent { dockerfile true }
       steps {
-        sh '''
-          node --version
-          git --version
-          curl --version
-        '''
+        node('vagrant-node') {
+          docker.build('.').inside {
+            sh '''
+              node --version
+              git --version
+              curl --version
+            '''
+          }
+        }
       }
-    }  
+    }
+    stage('Other Node Task') {
+      steps {
+        node('other-node') {
+          echo 'Running on another agent node!'
+        }
+      }
+    }
   }
 }
