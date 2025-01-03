@@ -19,13 +19,13 @@ pipeline {
     }
     stage('My dockerfile') {
       agent { dockerfile true }
-      // steps {
-      //   sh '''
-      //     node --version
-      //     git --version
-      //     curl --version
-      //   '''
-      // }
+      steps {
+        sh '''
+          node --version
+          git --version
+          curl --version
+        '''
+      }
     }  
   }
 }
