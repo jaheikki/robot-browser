@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent { label 'vagrant-node' }
   stages {
     stage('Back-end') {
       agent {
