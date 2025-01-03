@@ -1,7 +1,7 @@
 pipeline {
   agent {
     dockerfile {
-      args "-u 1000:1000 -v $PWD/results:/opt/robotframework/results"
+      args "-u 1000:1000 -v ${env.WORKSPACE}/results:/opt/robotframework/results"
     }
   }
   stages {
