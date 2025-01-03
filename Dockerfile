@@ -14,6 +14,9 @@ RUN pip install --no-cache-dir robotframework robotframework-browser
 
 RUN npx playwright install-deps
 
+# Create the directory and set permissions
+RUN mkdir -p /opt/robotframework/results && chown 1000:1000 /opt/robotframework/results
+
 # Initialize the Browser library
 RUN rfbrowser init
 
