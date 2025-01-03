@@ -1,15 +1,16 @@
 pipeline {
-    agent {
-        dockerfile {
-            filename 'Dockerfile' // Default is 'Dockerfile', specify only if different
-        }
+  agent none
+  stages {
+    stage('Run Robot Tests') {
+      agent { dockerfile true }
+      steps {
+        sh '''
+          mkdir -p results
+          docker run --rm -v $PWD/results:/opt/robotframework/results my-docker-image:latest \
+            robot --outputdir /opt/robotframework/results tests/suites/smoke/order_from_webshop.robot
+        '''
+      }
     }
-    stages {
-        stage('Build and Run') {
-            steps {
-                echo 'Running inside the Docker container built from Dockerfile!'
-                sh 'whoami && pwd && ls -l'
-            }
-        }
-    }
+  }
 }
+
