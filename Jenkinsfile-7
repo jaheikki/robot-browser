@@ -12,7 +12,7 @@ pipeline {
     stage('Archive Results') {
       steps {
         archiveArtifacts artifacts: 'results/**/*'
-        robot(outputPath: ".",
+        robot(outputPath: "results",
           passThreshold: 90.0,
           unstableThreshold: 70.0,
           disableArchiveOutput: true,
