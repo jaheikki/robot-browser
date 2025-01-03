@@ -31,4 +31,4 @@ RUN pip install --no-cache-dir -r /opt/robotframework/requirements.txt
 WORKDIR /opt/robotframework
 
 # Command to run tests (this can be overridden)
-CMD ["robot", "--outputdir", "/opt/robotframework/results", "."]
+# CMD ["robot", "--outputdir", "/opt/robotframework/results", "."]

@@ -8,8 +8,7 @@ pipeline {
     stage('Run Robot Tests') {
       steps {
         sh '''
-          mkdir -p results
-          robot --outputdir /opt/robotframework/results tests/suites/smoke/order_from_webshop.robot
+          robot --outputdir results tests/suites/smoke/order_from_webshop.robot
         '''
       }
     }
