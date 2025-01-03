@@ -12,6 +12,14 @@ pipeline {
     stage('Archive Results') {
       steps {
         archiveArtifacts artifacts: 'results/**/*'
+        publishHTML (target : [allowMissing: false,
+          alwaysLinkToLastBuild: true,
+          keepAll: true,
+          reportDir: 'results',
+          reportFiles: 'report.html',
+          reportName: 'Robot Framework Test Report',
+          reportTitles: 'The Report'
+        ])
         // publishHTML([
         //   allowMissing: false,
         //   alwaysLinkToLastBuild: true,
