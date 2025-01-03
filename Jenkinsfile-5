@@ -1,12 +1,13 @@
 pipeline {
-  agent none
+  agent {
+    label 'vagrant-node' // Ensure this node has Docker installed
+  }
   stages {
     stage('Run Robot Tests') {
-      agent { dockerfile true }
       steps {
         sh '''
           mkdir -p results
-          docker run --rm -v $PWD/results:/opt/robotframework/results my-docker-image:latest \
+          docker run --rm -v $PWD/results:/opt/robotframework/results b61d411679f58ca8d75cf756152ecdc33382c162:latest \
             robot --outputdir /opt/robotframework/results tests/suites/smoke/order_from_webshop.robot
         '''
       }
