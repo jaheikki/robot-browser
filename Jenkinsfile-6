@@ -1,14 +1,12 @@
 pipeline {
   agent any
-  environment {
-    DOCKER_ARGS = "-u $(id -u):$(id -g) -v $PWD/results:/opt/robotframework/results"
-  }
   stages {
     stage('Run Robot Tests') {
       steps {
         sh '''
           mkdir -p results
-          docker run ${DOCKER_ARGS} <your-docker-image> robot --outputdir /opt/robotframework/results tests/suites/smoke/order_from_webshop.robot
+          DOCKER_ARGS="-u $(id -u):$(id -g) -v $PWD/results:/opt/robotframework/results"
+          docker run $DOCKER_ARGS <your-docker-image> robot --outputdir /opt/robotframework/results tests/suites/smoke/order_from_webshop.robot
         '''
       }
     }
