@@ -2,15 +2,13 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile' // Default is 'Dockerfile', specify only if different
-            dir 'path-to-dockerfile-directory' // Optional, specify if not in the workspace root
-            additionalBuildArgs '--build-arg SOME_ARG=value' // Optional
         }
     }
     stages {
         stage('Build and Run') {
             steps {
                 echo 'Running inside the Docker container built from Dockerfile!'
-                sh 'your-command-here'
+                sh 'whoami && pwd && ls -l'
             }
         }
     }
