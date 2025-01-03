@@ -1,8 +1,11 @@
 pipeline {
   agent {
     dockerfile {
-      args "-u 1000:1000 -v ${env.WORKSPACE}/results:/opt/robotframework/results"
+      args "-u 1000:1000 -v ${WORKSPACE}/results:/opt/robotframework/results"
     }
+  }
+  environment {
+    WORKSPACE = "${env.WORKSPACE}" // Pass workspace to container
   }
   stages {
     stage('Run Robot Tests') {
