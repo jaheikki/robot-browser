@@ -1,8 +1,8 @@
 pipeline {
   agent {
     dockerfile {
-      // Bind the container's results directory to the Jenkins workspace
-      args '-v $PWD/results:/opt/robotframework/results'
+      // Mount the results directory and specify the user
+      args '-u $(id -u):$(id -g) -v $PWD/results:/opt/robotframework/results'
     }
   }
   stages {
