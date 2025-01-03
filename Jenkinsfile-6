@@ -1,17 +1,15 @@
 pipeline {
   agent {
     dockerfile {
-      args "-u 1000:1000 -v ${WORKSPACE}/results:/opt/robotframework/results"
+      args "-u 1000:1000 -v ${env.WORKSPACE}/results:/opt/robotframework/results -e WORKSPACE=${env.WORKSPACE}"
     }
-  }
-  environment {
-    WORKSPACE = "${env.WORKSPACE}" // Pass workspace to container
   }
   stages {
     stage('Run Robot Tests') {
       steps {
         sh '''
           mkdir -p results
+          echo "WORKSPACE inside container: $WORKSPACE"
           robot --outputdir /opt/robotframework/results tests/suites/smoke/order_from_webshop.robot
         '''
       }
