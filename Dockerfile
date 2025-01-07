@@ -30,6 +30,5 @@ RUN pip install --no-cache-dir -r /opt/robotframework/requirements.txt
 # Set the working directory
 WORKDIR /opt/robotframework
 
-# Command to run tests (this can be overridden)
+# Command to run tests in case you start the tests with Docker run(this can be overridden)
 # CMD ["robot", "--outputdir", "/opt/robotframework/results", "."]
-CMD ["robot", "--outputdir", "/opt/robotframework/results", "tests/suites/smoke/order_from_webshop.robot"]

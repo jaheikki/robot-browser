@@ -5,10 +5,7 @@ pipeline {
     stage('Run Robot Tests') {
       steps {
         sh '''
-          pwd
-          ls -ltr results
-          ls -ltr /opt/robotframework/
-          ls -ltr /opt/robotframework/results
+          robot --outputdir results tests/suites/smoke/order_from_webshop.robot
         '''
       }
     }
