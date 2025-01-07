@@ -7,6 +7,7 @@ pipeline {
         sh '''
           pwd
           ls -ltr results
+          ls -ltr /opt/robotframework/
           ls -ltr /opt/robotframework/results
         '''
       }
