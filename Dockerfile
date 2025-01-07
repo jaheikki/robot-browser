@@ -32,3 +32,4 @@ WORKDIR /opt/robotframework
 
 # Command to run tests (this can be overridden)
 # CMD ["robot", "--outputdir", "/opt/robotframework/results", "."]
+CMD ["robot", "--outputdir", "results", "."]
