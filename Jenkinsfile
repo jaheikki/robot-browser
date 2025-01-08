@@ -32,30 +32,44 @@ pipeline {
                 archiveArtifacts artifacts: 'results_api/**/*', allowEmptyArchive: true
                 
                 // Robot Framework plugin configuration for UI results
-                robot(
-                    outputPath: "results_ui",  // Match the output directory for UI tests
-                    passThreshold: 90.0,
-                    unstableThreshold: 70.0,
-                    disableArchiveOutput: true,
-                    outputFileName: "output.xml",
-                    logFileName: 'log.html',
-                    reportFileName: 'report.html',
-                    countSkippedTests: true,
-                    otherFiles: 'screenshot-*.png'
-                )
-                
+                script {
+                    def uiResults = 'results_ui/output.xml'
+                    def uiLog = 'results_ui/log.html'
+                    def uiReport = 'results_ui/report.html'
+                    if (fileExists(uiResults)) {
+                        robot(
+                            outputPath: "results_ui",  // Match the output directory for UI tests
+                            passThreshold: 90.0,
+                            unstableThreshold: 70.0,
+                            disableArchiveOutput: true,
+                            outputFileName: "output.xml",
+                            logFileName: 'log.html',
+                            reportFileName: 'report.html',
+                            countSkippedTests: true,
+                            otherFiles: 'screenshot-*.png'
+                        )
+                    }
+                }
+
                 // Robot Framework plugin configuration for API results
-                robot(
-                    outputPath: "results_api",  // Match the output directory for API tests
-                    passThreshold: 90.0,
-                    unstableThreshold: 70.0,
-                    disableArchiveOutput: true,
-                    outputFileName: "output.xml",
-                    logFileName: 'log.html',
-                    reportFileName: 'report.html',
-                    countSkippedTests: true,
-                    otherFiles: 'screenshot-*.png'
-                )
+                script {
+                    def apiResults = 'results_api/output.xml'
+                    def apiLog = 'results_api/log.html'
+                    def apiReport = 'results_api/report.html'
+                    if (fileExists(apiResults)) {
+                        robot(
+                            outputPath: "results_api",  // Match the output directory for API tests
+                            passThreshold: 90.0,
+                            unstableThreshold: 70.0,
+                            disableArchiveOutput: true,
+                            outputFileName: "output.xml",
+                            logFileName: 'log.html',
+                            reportFileName: 'report.html',
+                            countSkippedTests: true,
+                            otherFiles: 'screenshot-*.png'
+                        )
+                    }
+                }
             }
         }
     }
