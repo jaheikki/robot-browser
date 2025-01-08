@@ -1,25 +1,30 @@
 pipeline {
-    agent { dockerfile true }
-
+    agent none  // Prevent the entire pipeline from locking a single executor
     stages {
         stage('Run Tests in Parallel') {
             parallel {
                 stage('Run UI Tests') {
+                    agent {
+                        dockerfile {
+                            additionalBuildArgs '--no-cache'  // Optional: customize Docker build args
+                        }
+                    }
                     steps {
-                        sh '''
-                            robot --outputdir results tests/suites/smoke/order_from_webshop.robot
-                        '''
+                        sh 'robot --outputdir results tests/suites/smoke/order_from_webshop.robot'
                     }
                 }
                 stage('Run API Tests') {
+                    agent {
+                        dockerfile {
+                            additionalBuildArgs '--no-cache'  // Optional: customize Docker build args
+                        }
+                    }
                     steps {
-                        sh '''
-                            robot --outputdir results2 tests/suites/api/api_tests.robot
-                        '''
+                        sh 'robot --outputdir results2 tests/suites/api/api_tests.robot'
                     }
                 }
             }
-        }
+        }    
         stage('Archive Results') {
             steps {
                 archiveArtifacts artifacts: 'results/**/*'
@@ -39,3 +44,5 @@ pipeline {
         }
     }
 }
+
+       
