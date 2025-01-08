@@ -9,7 +9,8 @@ pipeline {
             robot --outputdir results tests/suites/smoke/order_from_webshop.robot
           '''
         }
-        stage('Run API Tests') {
+      }
+      stage('Run API Tests') {
         steps {
           sh '''
             robot --outputdir results2 tests/suites/smoke/order_from_webshop.robot
