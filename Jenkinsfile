@@ -20,7 +20,7 @@ pipeline {
         
         // Stage to archive the results after the tests have finished
         stage('Archive Results') {
-            agent any  // This will allocate a node for the Archive Results stage
+            agent { label 'vagrant-node' }  // Use the agent with the label 'vagrant-node'
             steps {
                 archiveArtifacts artifacts: 'results/**/*', allowEmptyArchive: true
                 archiveArtifacts artifacts: 'results2/**/*', allowEmptyArchive: true
