@@ -1,35 +1,54 @@
 pipeline {
-    agent none // Prevent the entire pipeline from locking a single executor
+    agent none  // Prevent the entire pipeline from locking a single executor
     stages {
         stage('Run Tests in Parallel') {
             parallel {
                 stage('Run UI Tests') {
                     agent { dockerfile true }
                     steps {
+                        // Run the UI tests
                         sh 'robot --outputdir results_ui tests/suites/smoke/order_from_webshop.robot'
-                        stash name: 'results_ui', includes: 'results_ui/**/*' // Stash the UI results
+
+                        // Robot Framework plugin configuration to process results
+                        robot(
+                            outputPath: 'results_ui',
+                            passThreshold: 90.0,
+                            unstableThreshold: 70.0,
+                            disableArchiveOutput: true,  // Don't archive output via robot plugin itself
+                            outputFileName: "output.xml",
+                            logFileName: 'log.html',
+                            reportFileName: 'report.html',
+                            countSkippedTests: true,
+                            otherFiles: 'screenshot-*.png'
+                        )
+
+                        // Archive the results after processing
+                        archiveArtifacts artifacts: 'results_ui/**/*', allowEmptyArchive: true
                     }
                 }
                 stage('Run API Tests') {
                     agent { dockerfile true }
                     steps {
+                        // Run the API tests
                         sh 'robot --outputdir results_api tests/suites/api/api_tests.robot'
-                        stash name: 'results_api', includes: 'results_api/**/*' // Stash the API results
+
+                        // Robot Framework plugin configuration to process results
+                        robot(
+                            outputPath: 'results_api',
+                            passThreshold: 90.0,
+                            unstableThreshold: 70.0,
+                            disableArchiveOutput: true,  // Don't archive output via robot plugin itself
+                            outputFileName: "output.xml",
+                            logFileName: 'log.html',
+                            reportFileName: 'report.html',
+                            countSkippedTests: true,
+                            otherFiles: 'screenshot-*.png'
+                        )
+
+                        // Archive the results after processing
+                        archiveArtifacts artifacts: 'results_api/**/*', allowEmptyArchive: true
                     }
                 }
-            }
-        }
-        // Stage to archive the results after the tests have finished
-        stage('Archive Results') {
-            agent { label 'vagrant-node' } 
-            steps {
-                // Unstash the UI results and archive them
-                unstash 'results_ui'
-                archiveArtifacts artifacts: 'results_ui/**/*', allowEmptyArchive: true
-
-                // Unstash the API results and archive them
-                unstash 'results_api'
-                archiveArtifacts artifacts: 'results_api/**/*', allowEmptyArchive: true
             }
         }
     }
