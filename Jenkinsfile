@@ -6,13 +6,13 @@ pipeline {
                 stage('Run UI Tests') {
                     agent { dockerfile true }
                     steps {
-                        sh 'robot --outputdir results_ui tests/suites/smoke/order_from_webshop.robot'
+                        sh 'robot --outputdir results tests/suites/smoke/order_from_webshop.robot'
                     }
                 }
                 stage('Run API Tests') {
                     agent { dockerfile true }
                     steps {
-                        sh 'robot --outputdir results_api tests/suites/api/api_tests.robot'
+                        sh 'robot --outputdir results2 tests/suites/api/api_tests.robot'
                     }
                 }
             }
@@ -22,12 +22,12 @@ pipeline {
         stage('Archive Results') {
             agent { label 'vagrant-node' }  // Use the agent with the label 'vagrant-node'
             steps {
-                archiveArtifacts artifacts: 'results_ui/**/*', allowEmptyArchive: true
-                archiveArtifacts artifacts: 'results_api/**/*', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'results/**/*', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'results2/**/*', allowEmptyArchive: true
                 
                 // Robot Framework plugin configuration
                 robot(
-                    outputPath: "results_ui",
+                    outputPath: "results",
                     passThreshold: 90.0,
                     unstableThreshold: 70.0,
                     disableArchiveOutput: true,
@@ -38,7 +38,7 @@ pipeline {
                     otherFiles: 'screenshot-*.png'
                 )
                 robot(
-                    outputPath: "results_api",
+                    outputPath: "results2",
                     passThreshold: 90.0,
                     unstableThreshold: 70.0,
                     disableArchiveOutput: true,
@@ -52,3 +52,4 @@ pipeline {
         }
     }
 }
+ 
