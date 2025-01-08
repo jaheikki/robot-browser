@@ -19,37 +19,37 @@ pipeline {
         }
         
         // Stage to archive the results after the tests have finished
-        stage('Archive Results') {
-            agent { label 'vagrant-node' }  // Use the agent with the label 'vagrant-node'
-            steps {
-                archiveArtifacts artifacts: 'results/**/*', allowEmptyArchive: true
-                archiveArtifacts artifacts: 'results2/**/*', allowEmptyArchive: true
+        // stage('Archive Results') {
+        //     agent { label 'vagrant-node' }  // Use the agent with the label 'vagrant-node'
+        //     steps {
+        //         archiveArtifacts artifacts: 'results/**/*', allowEmptyArchive: true
+        //         archiveArtifacts artifacts: 'results2/**/*', allowEmptyArchive: true
                 
-                // Robot Framework plugin configuration
-                robot(
-                    outputPath: "results",
-                    passThreshold: 90.0,
-                    unstableThreshold: 70.0,
-                    disableArchiveOutput: true,
-                    outputFileName: "output.xml",
-                    logFileName: 'log.html',
-                    reportFileName: 'report.html',
-                    countSkippedTests: true,
-                    otherFiles: 'screenshot-*.png'
-                )
-                robot(
-                    outputPath: "results2",
-                    passThreshold: 90.0,
-                    unstableThreshold: 70.0,
-                    disableArchiveOutput: true,
-                    outputFileName: "output.xml",
-                    logFileName: 'log.html',
-                    reportFileName: 'report.html',
-                    countSkippedTests: true,
-                    otherFiles: 'screenshot-*.png'
-                )
-            }
-        }
+        //         // Robot Framework plugin configuration
+        //         robot(
+        //             outputPath: "results",
+        //             passThreshold: 90.0,
+        //             unstableThreshold: 70.0,
+        //             disableArchiveOutput: true,
+        //             outputFileName: "output.xml",
+        //             logFileName: 'log.html',
+        //             reportFileName: 'report.html',
+        //             countSkippedTests: true,
+        //             otherFiles: 'screenshot-*.png'
+        //         )
+        //         robot(
+        //             outputPath: "results2",
+        //             passThreshold: 90.0,
+        //             unstableThreshold: 70.0,
+        //             disableArchiveOutput: true,
+        //             outputFileName: "output.xml",
+        //             logFileName: 'log.html',
+        //             reportFileName: 'report.html',
+        //             countSkippedTests: true,
+        //             otherFiles: 'screenshot-*.png'
+        //         )
+        //     }
+        // }
     }
 }
  
