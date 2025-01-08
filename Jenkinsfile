@@ -14,7 +14,7 @@ pipeline {
                 stage('Run API Tests') {
                     steps {
                         sh '''
-                            robot --outputdir results2 tests/suites/smoke/order_from_webshop.robot
+                            robot --outputdir results2 tests/suites/api/api_tests.robot
                         '''
                     }
                 }
