@@ -17,23 +17,6 @@ pipeline {
                 }
             }
         }    
-        // stage('Archive Results') {
-        //     steps {
-        //         archiveArtifacts artifacts: 'results/**/*'
-        //         archiveArtifacts artifacts: 'results2/**/*'
-        //         // Uncomment and customize the Robot Framework plugin configuration if required
-        //         // robot(outputPath: "results",
-        //         //   passThreshold: 90.0,
-        //         //   unstableThreshold: 70.0,
-        //         //   disableArchiveOutput: true,
-        //         //   outputFileName: "output.xml",
-        //         //   logFileName: 'log.html',
-        //         //   reportFileName: 'report.html',
-        //         //   countSkippedTests: true,
-        //         //   otherFiles: 'screenshot-*.png'
-        //         // )
-        //     }
-        // }
     }
 }
 
