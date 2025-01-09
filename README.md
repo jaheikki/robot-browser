@@ -62,7 +62,7 @@ Run dockerimage:
   - Add 'Remote root directory' as e.g. /home/vagrant/jenkins
   - Set Launch method as 'Launch agent by connecting it to controller' + Save
 - Connect JNLP agent to master with guidance of new node in Jenkins master e.g:
-  -   java -jar agent.jar -url http://<jenkins controller private ip>:8080/ -secret <secret> -name "vagrant-node" -webSocket -workDir "/home/vagrant/jenkins"
+  -   java -jar agent.jar -url http://'jenkins controller private ip':8080/ -secret 'secret' -name "vagrant-node" -webSocket -workDir "/home/vagrant/jenkins"
   - As response you should get 'INFO: Connected' in console.
 - Add new job i.e. 'New Item' in Jenkins master UI
   - Add name and select 'Pipeline' + OK.
