@@ -71,7 +71,7 @@ Run dockerimage:
   - In Script Path set: Jenkinsfile + SAVE
 - Setting jenkins is ready so start job by 'Build now' in job/item menu.
   - Robot tests should run parallelly and PASS
-  - You should see Robot test reports for both executors under job's number link.
+  - You should see Robot test reports for both 2 executors (2 docker containers) under job's number link.
 
 
 
