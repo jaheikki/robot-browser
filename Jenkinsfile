@@ -1,14 +1,14 @@
 pipeline {
     agent none
     environment {
-        DOCKER_IMAGE = "robotframework-sbrowser:${env.BUILD_NUMBER}"
+        DOCKER_IMAGE = "robotframework-browser:${env.BUILD_NUMBER}"
     }
     stages {
         stage('Build Docker Image') {
             agent { label 'vagrant-node' }
             steps {
                 sh """
-                docker build -t ${DOCKER_IMAGE} .
+                docker build -t ${DOCKER_IMAGE} -f Dockerfile .
                 """
             }
         }
