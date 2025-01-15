@@ -22,7 +22,7 @@ pipeline {
                     }
                     steps {
                         // Run the UI tests
-                        sh 'robot --outputdir results_ui tests/ui/saucedemo_order_test.robot'
+                        sh 'robot --outputdir results_ui tests/suites/smoke/order_from_webshop.robot'
                         archiveArtifacts artifacts: 'results_ui/**/*', allowEmptyArchive: true
                     }
                 }
@@ -34,7 +34,7 @@ pipeline {
                     }
                     steps {
                         // Run the API tests
-                        sh 'robot --outputdir results_api tests/api/api_tests.robot'
+                        sh 'robot --outputdir results_api tests/suites/api/api_tests.robot'
                         archiveArtifacts artifacts: 'results_api/**/*', allowEmptyArchive: true
                     }
                 }
