@@ -1,5 +1,5 @@
 # Use an official Python image as the base
-FROM python:3.9-slim
+FROM python:3.9-slim-bullseye
 
 # Install Node.js and npm
 RUN apt-get update && apt-get install -y \
@@ -11,12 +11,7 @@ RUN apt-get update && apt-get install -y \
 # Install Robot Framework and Browser library
 RUN pip install --no-cache-dir robotframework robotframework-browser
 
-
 RUN npx playwright install-deps
-
-# Create the directory and set permissions
-# RUN mkdir -p /opt/robotframework/results && chown 1000:1000 /opt/robotframework/results
-
 
 # Initialize the Browser library
 RUN rfbrowser init
